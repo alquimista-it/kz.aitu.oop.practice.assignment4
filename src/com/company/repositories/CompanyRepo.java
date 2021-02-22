@@ -2,7 +2,7 @@ package com.company.repositories;
 
 import com.company.data.interfaces.IDB;
 import com.company.entities.Company;
-import com.company.entities.Locomotive;
+import com.company.entities.Linker;
 import com.company.entities.Worker;
 import com.company.repositories.interfaces.ICompanyRepo;
 
@@ -82,15 +82,19 @@ public class CompanyRepo implements ICompanyRepo {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "SELECT id,name,cost FROM company";
+            String sql = "SELECT company.id,worker.id,worker.fname,worker.lname,worker.speciality,worker.cost,worker.phone FROM worker,company,linker WHERE worker.id=linker.worker_id and linker.worker_id=?;" +
+                    "UPDATE company SET cost=(SELECT SUM (worker.cost) FROM worker,linker WHERE worker.id=linker.worker_id and linker.worker_id=?);";
             Statement st = con.createStatement();
 
             ResultSet rs = st.executeQuery(sql);
-            ist<Worker> workerList = new ArrayList<>();
+            List<Worker> workerList = new ArrayList<>();
             while (rs.next()) {
                 Worker worker = new Worker(rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getInt("cost")
+                        rs.getString("lname"),
+                        rs.getString("fname"),
+                        rs.getString("speciality"),
+                        rs.getInt("cost"),
+                        rs.getString("phone")
                 );
 
                 workerList.add(worker);
@@ -144,5 +148,8 @@ public class CompanyRepo implements ICompanyRepo {
         }
         return null;
     }
-    }
+
+
+
+}
 

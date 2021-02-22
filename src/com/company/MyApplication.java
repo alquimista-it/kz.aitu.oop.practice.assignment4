@@ -1,24 +1,23 @@
 package com.company;
 
-import com.company.controllers.LocomotiveController;
-import com.company.controllers.TrainController;
-import com.company.controllers.UserController;
-import com.company.repositories.interfaces.ILokoRepo;
-import com.company.repositories.interfaces.ITrainRepo;
-import com.company.repositories.interfaces.IUserRepository;
+import com.company.controllers.*;
+import com.company.repositories.LinkerRepo;
+import com.company.repositories.interfaces.*;
 
 import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 
 public class MyApplication {
-    private final LocomotiveController controller1;
-    private final TrainController controller2;
+    private final CompanyController controller1;
+    private final WorkerCompany controller2;
+    private final LinkerController controller3;
     private final Scanner scanner;
 
-    public MyApplication(ILokoRepo lokoRepo, ITrainRepo trainRepo) {
-        controller1 = new LocomotiveController(lokoRepo,trainRepo);
-        controller2 = new TrainController(trainRepo);
+    public MyApplication(ICompanyRepo companyRepo, IWorkerRepo workerRepo,ILinker linkerRepo) {
+        controller1 = new CompanyController(companyRepo,workerRepo);
+        controller2 = new WorkerCompany(workerRepo);
+        controller3 = new LinkerController(linkerRepo);
         scanner = new Scanner(System.in);
     }
 
@@ -27,33 +26,37 @@ public class MyApplication {
             System.out.println();
             System.out.println("Welcome to My Application");
             System.out.println("Select option:");
-            System.out.println("1. Get all locomotives");
-            System.out.println("2. Get locomotive by id");
-            System.out.println("3. Create locomotive");
-            System.out.println("4. Get all train id");
-            System.out.println("5. Get train id");
-            System.out.println("6. Create train");
-            System.out.println("7. Select all trains of locomotive");
+            System.out.println("1. Get all projects");
+            System.out.println("2. Get project by id");
+            System.out.println("3. Create project");
+            System.out.println("4. Get all workers");
+            System.out.println("5. Get worker by id");
+            System.out.println("6. Create worker");
+            System.out.println("7. Include worker to project");
+            System.out.println("8. Select all workers of selected projected");
             System.out.println("0. Exit");
             System.out.println();
             try {
-                System.out.print("Enter option (1-7): ");
+                System.out.print("Enter option (1-8): ");
                 int option = scanner.nextInt();
                 if (option == 1) {
-                    getAllLocomotivesMenu();
+                    getAllCompanyMenu();
                 } else if (option == 2) {
-                    getLocomotiveByIdMenu();
+                    getCompanyByIdMenu();
                 } else if (option == 3) {
-                    createLocomotiveMenu();
+                    createCompanyMenu();
                 }else if (option == 4) {
-                    getAllTrainsMenu();
+                    getAllWorkerMenu();
                 }else if (option == 5) {
-                    getTrainByIdMenu();
+                    getWorkerByIdMenu();
                 }else if (option == 6) {
-                    createTrainMenu();
+                    createWorkerMenu();
+                }else if (option == 7) {
+                    plusWorkerForCompany();
                 }
-                else if (option == 7) {
-                    getAllTrainsOfLocomotiveMenu();
+
+                else if (option == 8) {
+                    getAllWorkersOfCompanyMenu();
                 }else {
 
                     break;
@@ -67,63 +70,82 @@ public class MyApplication {
 
         }
     }
+    public void plusWorkerForCompany(){
+        System.out.println("Please enter company_id");
 
-    public void getAllLocomotivesMenu() {
-        String response = controller1.getAllLocomotive();
+        int id1 = scanner.nextInt();
+        System.out.println("Please enter worker_id");
+
+        int id2 = scanner.nextInt();
+        String response = controller3.plusWorkerToCompany(id1,id2);
         System.out.println(response);
     }
 
-    public void getLocomotiveByIdMenu() {
+
+    public void getAllCompanyMenu() {
+        String response = controller1.getAllCompanies();
+        System.out.println(response);
+    }
+
+    public void getCompanyByIdMenu() {
         System.out.println("Please enter id");
 
         int id = scanner.nextInt();
-        String response = controller1.getLocomotive(id);
+        String response = controller1.getCompany(id);
         System.out.println(response);
     }
 
-    public void getAllTrainsOfLocomotiveMenu() {
-        System.out.println("Please enter id of needing locomotive");
+    public void getAllWorkersOfCompanyMenu() {
+        System.out.println("Please enter id of needing company's workers");
 
         int id = scanner.nextInt();
-        String response = controller1.getTrainbyLocomotive(id);
+        String response = controller1.getWorkerbyCompany(id);
         System.out.println(response);
     }
 
-    public void createLocomotiveMenu() {
+    public void createCompanyMenu() {
 
-        System.out.println("Please enter locomotive name");
+        System.out.println("Please enter project name");
         String name = scanner.next();
-        System.out.println("Please enter train id");
-        String trainid = scanner.next();
-        int train_id=Integer.parseInt(trainid);
+        int cost=0;
+//        System.out.println("Please enter train id");
+//        String trainid = scanner.next();
+//        int train_id=Integer.parseInt(trainid);
 
-        String response = controller1.createLocomotive(name, train_id);
+        String response = controller1.createCompany(name,cost);
         System.out.println(response);
     }
 
 
-    public void getAllTrainsMenu() {
-        String response = controller2.getAllTrains();
+    public void getAllWorkerMenu() {
+        String response = controller2.getAllWorkers();
         System.out.println(response);
     }
 
-    public void getTrainByIdMenu() {
+    public void getWorkerByIdMenu() {
         System.out.println("Please enter id");
 
         int id = scanner.nextInt();
-        String response = controller2.getTrain(id);
+        String response = controller2.getWorker(id);
         System.out.println(response);
     }
 
-    public void createTrainMenu() {
+    public void createWorkerMenu() {
 
-        System.out.println("Please enter train name");
-        String name = scanner.next();
-        System.out.println("Please enter train capacity");
-        String capacity1 = scanner.next();
-        int capacity=Integer.parseInt(capacity1);
+        System.out.println("Please enter worker's fname");
+        String fname = scanner.next();
+        System.out.println("Please enter worker's lname");
+        String lname = scanner.next();
+        System.out.println("Please enter worker's speciality");
+        String speciality = scanner.next();
+        System.out.println("Please enter worker's salary");
+        int cost = scanner.nextInt();
+//        int cost1=Integer.parseInt(cost);
+        System.out.println("Please enter worker's phone number");
+        String phone = scanner.next();
+//        int phone1=Integer.parseInt(phone);
 
-        String response = controller2.createTrain(name, capacity);
+        String response = controller2.createWorker(lname,fname,speciality,cost,phone);
         System.out.println(response);
     }
 

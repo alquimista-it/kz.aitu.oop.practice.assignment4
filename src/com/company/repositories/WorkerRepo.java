@@ -21,14 +21,14 @@ public class WorkerRepo implements IWorkerRepo {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "INSERT INTO worker(fame,lname,speciality,cost,phone) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO worker(fname,lname,speciality,cost,phone) VALUES (?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(sql);
 
             st.setString(1, worker.getFname());
             st.setString(2, worker.getLname());
             st.setString(3, worker.getSpeciality());
             st.setInt(4, worker.getCost());
-            st.setInt(5, worker.getPhone());
+            st.setString(5, worker.getPhone());
 
             boolean executed = st.execute();
             return executed;
@@ -51,7 +51,7 @@ public class WorkerRepo implements IWorkerRepo {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "SELECT id,fame,lname,speciality,cost,phone WHERE id=?";
+            String sql = "SELECT id,fname,lname,speciality,cost,phone FROM worker WHERE id=?";
             PreparedStatement st = con.prepareStatement(sql);
 
             st.setInt(1, id);
@@ -59,11 +59,11 @@ public class WorkerRepo implements IWorkerRepo {
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 Worker worker = new Worker(rs.getInt("id"),
-                        rs.getString("lname"),
                         rs.getString("fname"),
+                        rs.getString("lname"),
                         rs.getString("speciality"),
                         rs.getInt("cost"),
-                        rs.getInt("phone")
+                        rs.getString("phone")
                 );
 
                 return worker;
@@ -87,7 +87,7 @@ public class WorkerRepo implements IWorkerRepo {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "SELECT id,fame,lname,speciality,cost,phone FROM company";
+            String sql = "SELECT id,fname,lname,speciality,cost,phone FROM worker";
             Statement st = con.createStatement();
 
             ResultSet rs = st.executeQuery(sql);
@@ -98,7 +98,7 @@ public class WorkerRepo implements IWorkerRepo {
                         rs.getString("fname"),
                         rs.getString("speciality"),
                         rs.getInt("cost"),
-                        rs.getInt("phone")
+                        rs.getString("phone")
                 );
 
                 workerList.add(worker);

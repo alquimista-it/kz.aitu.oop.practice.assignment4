@@ -9,10 +9,10 @@ public class Worker {
     private String lname;
     private String speciality;
     private int cost;
-    private int phone;
+    private String phone;
 
-    public Worker(){}
-    public Worker(int id, String fname,String lname,String speciality, int cost, int phone){
+    public Worker(int id, String name, int cost){}
+    public Worker(int id, String fname,String lname,String speciality, int cost, String phone){
         setId(id);
         setFname(fname);
         setLname(lname);
@@ -20,7 +20,7 @@ public class Worker {
         setCost(cost);
         setPhone(phone);
     }
-    public Worker( String fname,String lname,String speciality, int cost, int phone){
+    public Worker( String fname,String lname,String speciality, int cost, String phone){
         setFname(fname);
         setLname(lname);
         setSpeciality(speciality);
@@ -28,7 +28,7 @@ public class Worker {
         setPhone(phone);
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -52,7 +52,7 @@ public class Worker {
         this.lname = lname;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

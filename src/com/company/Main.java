@@ -2,12 +2,8 @@ package com.company;
 
 import com.company.data.PostgresDB;
 import com.company.data.interfaces.IDB;
-import com.company.repositories.LokoRepo;
-import com.company.repositories.TrainRepo;
-import com.company.repositories.UserRepository;
-import com.company.repositories.interfaces.ILokoRepo;
-import com.company.repositories.interfaces.ITrainRepo;
-import com.company.repositories.interfaces.IUserRepository;
+import com.company.repositories.*;
+import com.company.repositories.interfaces.*;
 
 public class Main {
 
@@ -50,9 +46,10 @@ public class Main {
         // Here you specify which DB and UserRepository to use
         // And changing DB should not affect to whole code
         IDB db = new PostgresDB();
-        ILokoRepo repo = new LokoRepo(db);
-        ITrainRepo repo1 = new TrainRepo(db);
-        MyApplication app = new MyApplication(repo,repo1);
+        ICompanyRepo repo = new CompanyRepo(db);
+        IWorkerRepo repo1 = new WorkerRepo(db);
+        ILinker repo2=new LinkerRepo(db);
+        MyApplication app = new MyApplication(repo,repo1,repo2);
         app.start();
     }
 }
