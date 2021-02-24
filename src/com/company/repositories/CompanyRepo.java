@@ -82,8 +82,8 @@ public class CompanyRepo implements ICompanyRepo {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "SELECT company.id,worker.id,worker.fname,worker.lname,worker.speciality,worker.cost,worker.phone FROM worker,company,linker WHERE worker.id=linker.worker_id and linker.worker_id=?;" +
-                    "UPDATE company SET cost=(SELECT SUM (worker.cost) FROM worker,linker WHERE worker.id=linker.worker_id and linker.worker_id=?);";
+                String sql = "SELECT worker.id,worker.fname,worker.lname,worker.speciality,worker.cost,worker.phone FROM worker join linker ON linker.worker_id=worker.id WHERE linker.company_id=?;" +
+                    "Update company set cost=(SELECT SUM (worker.cost) FROM worker join linker on linker.worker_id=worker.id WHERE  linker.company_id=?) from linker  WHERE  linker.company_id=? and company.id=?;";
             Statement st = con.createStatement();
 
             ResultSet rs = st.executeQuery(sql);
