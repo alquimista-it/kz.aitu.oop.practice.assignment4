@@ -46,12 +46,12 @@ public class AdminRepo implements IAdminRepo {
 
 
     @Override
-    public Admin DeleteAdminById(int id) {
+    public boolean DeleteAdminById(int id) {
         return null;
     }
 
     @Override
-    public Admin UpdateAdminById(int id) {
+    public boolean UpdateAdminById(int id) {
         return null;
     }
 
@@ -71,12 +71,12 @@ public class AdminRepo implements IAdminRepo {
     }
 
     @Override
-    public Teacher DeleteTeacherById(int id) {
+    public boolean DeleteTeacherById(int id) {
         return null;
     }
 
     @Override
-    public Teacher UpdateTeacherById(int id) {
+    public boolean UpdateTeacherById(int id) {
         return null;
     }
 
@@ -96,12 +96,12 @@ public class AdminRepo implements IAdminRepo {
     }
 
     @Override
-    public Student DeleteStudentById(int id) {
+    public boolean DeleteStudentById(int id) {
         return null;
     }
 
     @Override
-    public Student UpdateStudentById(int id) {
+    public boolean UpdateStudentById(int id) {
         return null;
     }
 
@@ -121,12 +121,12 @@ public class AdminRepo implements IAdminRepo {
     }
 
     @Override
-    public Subject DeleteSubjectById(int id) {
+    public boolean DeleteSubjectById(int id) {
         return null;
     }
 
     @Override
-    public Subject UpdateSubjectById(int id) {
+    public boolean UpdateSubjectById(int id) {
         return null;
     }
 
