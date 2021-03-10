@@ -1,4 +1,7 @@
 package com.company.repositories;
 
-public class AdminRepo {
+import com.company.repositories.interfaces.IAdminRepo;
+
+public class AdminRepo implements IAdminRepo {
+
 }
