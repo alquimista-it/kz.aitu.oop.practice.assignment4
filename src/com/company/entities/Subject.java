@@ -14,7 +14,7 @@ public class Subject {
     setId(id);
     setName(name);
     }
-//gyygvy
+
     public int getId() {
         return id;
     }
