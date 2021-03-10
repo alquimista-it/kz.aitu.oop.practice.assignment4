@@ -4,9 +4,8 @@ import com.company.data.interfaces.IDB;
 import com.company.entities.*;
 import com.company.repositories.interfaces.IAdminRepo;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdminRepo implements IAdminRepo {
@@ -44,24 +43,130 @@ public class AdminRepo implements IAdminRepo {
         return false;
     }
 
-
     @Override
-    public boolean DeleteAdminById(int id) {
+    public boolean DeleteAdminByLogin(String login) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "DELETE FROM admin WHERE login = ?";
+            PreparedStatement st = con.prepareStatement(sql);
+
+
+            boolean executed = st.execute();
+            return executed;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return false;
     }
 
     @Override
-    public boolean UpdateAdminById(int id) {
+    public boolean UpdateAdminByLogin(String login,String fname,String lname,int phone,String email) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "UPDATE admin SET fname=?,lname=?,phone=?,email=? WHERE login=?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, fname);
+            st.setString(2, lname);
+            st.setInt(3, phone);
+            st.setString(4, email);
+            st.setString(5, login);
+
+            boolean executed = st.execute();
+            return executed;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return false;
     }
 
     @Override
     public List<Admin> GetAllAdmins() {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "SELECT id,login,fname,lname,phone,email FROM admin";
+            Statement st = con.createStatement();
+
+            ResultSet rs = st.executeQuery(sql);
+            List<Admin> adminArrayList = new ArrayList<>();
+            while (rs.next()) {
+                Admin admin = new Admin(rs.getInt("id"),
+                        rs.getString("login"),
+                        rs.getString("fname"),
+                        rs.getString("lname"),
+                        rs.getInt("phone"),
+                        rs.getString("email")
+                );
+
+                adminArrayList.add(admin);
+            }
+
+            return adminArrayList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return null;
     }
 
     @Override
-    public Admin GetAdminById(int id) {
+    public Admin GetAdminById(String login) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "SELECT id,login,fname,lname,phone,email FROM admin WHERE login=?";
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setString(1, login);
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Admin admin = new Admin(rs.getInt("id"),
+                        rs.getString("login"),
+                        rs.getString("fname"),
+                        rs.getString("lname"),
+                        rs.getInt("phone"),
+                        rs.getString("email")
+                );
+
+                return admin;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return null;
     }
 
@@ -71,12 +176,12 @@ public class AdminRepo implements IAdminRepo {
     }
 
     @Override
-    public boolean DeleteTeacherById(int id) {
+    public boolean DeleteTeacherByLogin(String login) {
         return false;
     }
 
     @Override
-    public boolean UpdateTeacherById(int id) {
+    public boolean UpdateTeacherByLogin(String login, String fname, String lname, int age, boolean gender, int phone, String email, String subjectId) {
         return false;
     }
 
@@ -86,7 +191,7 @@ public class AdminRepo implements IAdminRepo {
     }
 
     @Override
-    public Teacher GetTeacherById(int id) {
+    public Teacher GetTeacherById(String login) {
         return null;
     }
 
@@ -96,12 +201,12 @@ public class AdminRepo implements IAdminRepo {
     }
 
     @Override
-    public boolean DeleteStudentById(int id) {
+    public boolean DeleteStudentByLogin(String login) {
         return false;
     }
 
     @Override
-    public boolean UpdateStudentById(int id) {
+    public boolean UpdateStudentByLogin(String login, String fname, String lname, int age, boolean gender, int phone, String email) {
         return false;
     }
 
@@ -111,7 +216,7 @@ public class AdminRepo implements IAdminRepo {
     }
 
     @Override
-    public Student GetStudentById(int id) {
+    public Student GetStudentById(String login) {
         return null;
     }
 
@@ -126,7 +231,7 @@ public class AdminRepo implements IAdminRepo {
     }
 
     @Override
-    public boolean UpdateSubjectById(int id) {
+    public boolean UpdateSubjectById(int id, String name) {
         return false;
     }
 

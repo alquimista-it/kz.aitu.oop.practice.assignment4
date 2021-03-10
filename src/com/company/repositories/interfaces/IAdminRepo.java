@@ -7,27 +7,27 @@ import java.util.List;
 
 public interface IAdminRepo {
     boolean CreateAdmin(Admin admin);
-    boolean DeleteAdminById(int id);
-    boolean UpdateAdminById(int id);
+    boolean DeleteAdminByLogin(String login);
+    boolean UpdateAdminByLogin(String login,String fname,String lname,int phone,String email);
     List<Admin> GetAllAdmins();
-    Admin GetAdminById(int id);
+    Admin GetAdminById(String login);
 
     boolean CreateTeacher(Teacher teacher);
-    boolean DeleteTeacherById(int id);
-    boolean UpdateTeacherById(int id);
+    boolean DeleteTeacherByLogin(String login);
+    boolean UpdateTeacherByLogin(String login, String fname, String lname, int age, boolean gender, int phone, String email, String subjectId);
     List<Teacher> GetAllTeachers();
-    Teacher GetTeacherById(int id);
+    Teacher GetTeacherById(String login);
 
 
     boolean CreateStudent(Student student);
-    boolean DeleteStudentById(int id);
-    boolean UpdateStudentById(int id);
+    boolean DeleteStudentByLogin(String login);
+    boolean UpdateStudentByLogin(String login, String fname, String lname, int age, boolean gender, int phone, String email);
     List<Student> GetAllStudents();
-    Student GetStudentById(int id);
+    Student GetStudentById(String login);
 
     boolean CreateSubject(Subject subject);
     boolean DeleteSubjectById(int id);
-    boolean UpdateSubjectById(int id);
+    boolean UpdateSubjectById(int id, String name);
     List<Subject> GetAllSubjects();
     Subject GetSubjectById(int id);
 
