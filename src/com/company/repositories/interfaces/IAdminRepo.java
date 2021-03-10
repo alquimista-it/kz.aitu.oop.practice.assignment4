@@ -1,10 +1,7 @@
 package com.company.repositories.interfaces;
 
 import com.company.data.interfaces.IDB;
-import com.company.entities.Admin;
-import com.company.entities.Student;
-import com.company.entities.Subject;
-import com.company.entities.Teacher;
+import com.company.entities.*;
 
 import java.util.List;
 
@@ -34,5 +31,6 @@ public interface IAdminRepo {
     List<Subject> GetAllSubjects();
     Subject GetSubjectById(int id);
 
-
+    boolean AddTeacherToSubject(SubjectAndTeacher subjectAndTeacher);//создаем тичеру сабджект
+    List<Teacher> GetAllTeachersBySubjectId(int id);
 }
