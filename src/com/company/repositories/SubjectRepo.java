@@ -1,4 +1,6 @@
 package com.company.repositories;
 
-public class SubjectRepo {
+import com.company.repositories.interfaces.ISubject;
+
+public class SubjectRepo implements ISubject {
 }

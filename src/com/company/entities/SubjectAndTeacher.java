@@ -41,4 +41,13 @@ public class SubjectAndTeacher {
     public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
     }
+
+    @Override
+    public String toString() {
+        return "SubjectAndTeacher{" +
+                "id=" + getId() +
+                ", teacherId=" + getTeacherId() +
+                ", subjectId=" + getSubjectId() +
+                '}';
+    }
 }

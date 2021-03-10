@@ -1,4 +1,6 @@
 package com.company.repositories;
 
-public class TeacherRepo {
+import com.company.repositories.interfaces.ITeacher;
+
+public class TeacherRepo implements ITeacher {
 }

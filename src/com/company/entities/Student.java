@@ -96,4 +96,18 @@ public class Student {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + getId() +
+                ", login='" + getLogin() + '\'' +
+                ", fname='" + getFname() + '\'' +
+                ", lname='" + getLname() + '\'' +
+                ", age=" + getAge() +
+                ", gender=" + isGender() +
+                ", phone=" + getPhone() +
+                ", email='" + getEmail() + '\'' +
+                '}';
+    }
 }

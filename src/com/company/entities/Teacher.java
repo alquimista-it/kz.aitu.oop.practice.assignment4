@@ -109,6 +109,18 @@ public class Teacher {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + getId() +
+                ", login='" + getLogin() + '\'' +
+                ", fname='" + getFname() + '\'' +
+                ", lname='" + getLname() + '\'' +
+                ", age=" + getAge() +
+                ", gender=" + isGender() +
+                ", phone=" + getPhone() +
+                ", email='" + getEmail() + '\'' +
+                ", subjectId='" + getSubjectId() + '\'' +
+                '}';
+    }
 }

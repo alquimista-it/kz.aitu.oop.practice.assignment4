@@ -41,4 +41,13 @@ public class Loginandpwd {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
+
+    @Override
+    public String toString() {
+        return "Loginandpwd{" +
+                "id=" + getId() +
+                ", login='" + getLogin() + '\'' +
+                ", pwd='" + getPwd() + '\'' +
+                '}';
+    }
 }
