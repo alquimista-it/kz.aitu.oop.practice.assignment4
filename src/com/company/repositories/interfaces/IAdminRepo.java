@@ -18,16 +18,21 @@ public interface IAdminRepo {
     boolean CreateTeacher(Teacher teacher);
     Teacher DeleteTeacherById(int id);
     Teacher UpdateTeacherById(int id);
+    List<Teacher> GetAllTeachers();
+    Teacher GetTeacherById(int id);
 
 
     boolean CreateStudent(Student student);
     Student DeleteStudentById(int id);
     Student UpdateStudentById(int id);
-
+    List<Student> GetAllStudents();
+    Student GetStudentById(int id);
 
     boolean CreateSubject(Subject subject);
     Subject DeleteSubjectById(int id);
     Subject UpdateSubjectById(int id);
+    List<Subject> GetAllSubjects();
+    Subject GetSubjectById(int id);
 
 
 }
