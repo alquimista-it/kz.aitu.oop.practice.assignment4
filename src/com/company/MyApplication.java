@@ -75,6 +75,9 @@ public class MyApplication {
             System.out.println("22. GetAllTeachersBySubjectId");
             System.out.println("23. CreateLoginAndPwd ");
             System.out.println("24. UpdateLoginAndPwd");
+            System.out.println("25. JoinToNewTeacher ");
+            System.out.println("26. ExitFromTeacher");
+
             System.out.println("0. •Exit");
             System.out.println();
             try { //function
@@ -92,16 +95,18 @@ public class MyApplication {
                     GetAdminByLogin();
                 }else if (option == 6) {
                     CreateTeacher();
-                }else if (option == 8) {
+                }else if (option == 7) {
                     DeleteTeacherByLogin();
-                }else if (option == 9) {
+                }else if (option == 8) {
                     UpdateTeacherByLogin();
-                }else if (option == 10) {
+                }else if (option == 9) {
                     GetAllTeachers();
-                }else if (option == 11) {
+                }else if (option == 10) {
                     GetTeacherByLogin();
-                }else if (option == 12) {
+                }else if (option == 11) {
                     CreateStudent();
+                }else if (option == 12) {
+                    DeleteStudentByLogin();
                 }else if (option == 13) {
                     UpdateStudentByLogin();
                 }else if (option == 14) {
@@ -126,6 +131,10 @@ public class MyApplication {
                     CreateLoginAndPwd();
                 }else if (option == 24) {
                     UpdateLoginAndPwd();
+                }else if (option == 25) {
+                    JoinToNewTeacher();
+                }else if (option == 26) {
+                    ExitFromTeacher();
                 }else if (option == 0) {
                     start();
                 }else {
@@ -201,6 +210,15 @@ public class MyApplication {
         }
     }
    // ---------------------------------------
+    public void login(){
+        System.out.println("Please, enter login!");
+        String login = scanner.next();
+        System.out.println("Please, enter pwd!");
+        String pwd = scanner.next();
+        String userType = scanner.next();
+    }
+
+
     //s admin
     public void CreateAdmin() {
         System.out.println("Please, enter login!");
