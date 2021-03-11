@@ -22,8 +22,9 @@ public class MyApplication {
             System.out.println("Welcome to Course management system");
             System.out.println("Select option:");
             System.out.println("1. Administrator module ");
-            System.out.println("2. •\tStudents module");
-            System.out.println("3. •\tInstructor module");
+            System.out.println("2. Students module");
+            System.out.println("3. Instructor module");
+            System.out.println("0. Exit");
             System.out.println();
             try { //function
                 System.out.print("Enter option (1-3): ");
@@ -48,19 +49,42 @@ public class MyApplication {
     public void adminInterface(){
         while (true) {
             System.out.println(); //console interface
-            System.out.println("Welcome to Course management system");
+            System.out.println("Welcome to Admin module");
             System.out.println("Select option:");
-            System.out.println("1. Administrator module ");
-            System.out.println("2. •Students module");
-            System.out.println("3. •Instructor module");
-            System.out.println("1. Administrator module ");
-            System.out.println("2. •Students module");
-            System.out.println("3. •Instructor module");
-            System.out.println("1. Administrator module ");
-            System.out.println("2. •Students module");
-            System.out.println("3. •Instructor module");
-            System.out.println("1. Administrator module ");
-            System.out.println("2. •Students module");
+            System.out.println("1. Create admin ");
+            System.out.println("2. DeleteAdminByLogin");
+            System.out.println("3. UpdateAdminByLogin ");
+            System.out.println("4. GetAllAdmins");
+            System.out.println("5. GetAdminById ");
+            System.out.println("6. CreateTeacher");
+            System.out.println("7. DeleteTeacherByLogin ");
+            System.out.println("8. UpdateTeacherByLogin");
+            System.out.println("9. GetAllTeachers ");
+            System.out.println("10. GetTeacherById");
+            System.out.println("11. CreateStudent ");
+            System.out.println("12. DeleteStudentByLogin");
+            System.out.println("13. UpdateStudentByLogin ");
+            System.out.println("14. GetAllStudents");
+            System.out.println("15. GetStudentById");
+            System.out.println("16. CreateSubject ");
+            System.out.println("17. DeleteSubjectById");
+            System.out.println("18. UpdateSubjectById");
+            System.out.println("19. GetAllSubjects");
+            System.out.println("20. GetSubjectById");
+            System.out.println("21. AddTeacherToSubject");
+            System.out.println("22. GetAllTeachersBySubjectId");
+            System.out.println("23. UpdateStudentByLogin ");
+            System.out.println("24. GetAllStudents");
+            System.out.println("26. CreateSubject ");
+            System.out.println("27. DeleteSubjectById");
+            System.out.println("28. UpdateSubjectById");
+            System.out.println("29. GetAllSubjects");
+            System.out.println("30. GetSubjectById");
+            System.out.println("31. AddTeacherToSubject");
+            System.out.println("32. GetAllTeachersBySubjectId");
+            System.out.println("33. UpdateStudentByLogin ");
+            System.out.println("34. GetAllStudents");
+
             System.out.println("0. •Exit");
             System.out.println();
             try { //function
@@ -140,6 +164,10 @@ public class MyApplication {
     }
 
 
+
+
+
+
    // ---------------------------------------
     //s admin
     public void CreateAdmin() {
@@ -212,7 +240,7 @@ public class MyApplication {
     public void DeleteTeacherByLogin() {
         System.out.println("Please, enter login of teacher!");
         String login = scanner.next();
-        String response = controller1.DeleteStudentByLogin(login);
+        String response = controller1.DeleteTeacherByLogin(login);
         System.out.println(response);
     }
     public void UpdateTeacherByLogin() {
@@ -330,8 +358,8 @@ public class MyApplication {
     }
     public void GetSubjectsById(){
         System.out.println("Please, enter ID of teacher!");
-        String login= scanner.next();
-        String response = controller1.GetStudentByLogin(login);
+        int id= scanner.nextInt();
+        String response = controller1.GetSubjectById(id);
         System.out.println(response);
     }
     //f subject
@@ -371,6 +399,63 @@ public class MyApplication {
         System.out.println("Please, enter type of user. Enter 1-3. 1-admin,2-teacher,3-student");
         int usertype = scanner.nextInt();
         String response = controller1.UpdateLoginAndPwd(id,login,pwd,usertype);
+        System.out.println(response);
+    }
+    public void JoinToNewTeacher(){
+        System.out.println("Please, enter teacher_id ");
+        int teacher_id= scanner.nextInt();
+        System.out.println("Please, enter student_id which was entered to teacher");
+        int student_id = scanner.nextInt();
+        String response = controller1.JoinToNewTeacher(teacher_id,student_id);
+        System.out.println(response);
+    }
+    public void ExitFromTeacher(){
+        System.out.println("Please, enter teacher_id");
+        int teacher_id= scanner.nextInt();
+        System.out.println("Please, enter student_id which you wand delete");
+        int student_id = scanner.nextInt();
+        String response = controller1.ExitFromTeacher(teacher_id,student_id);
+        System.out.println(response);
+    }
+    //message
+    public void WriteMessage(){
+        System.out.println("Please, enter teacher_id");
+        boolean direction= scanner.nextBoolean();
+        System.out.println("Please, enter student_id which you wand delete");
+        String teacher_login= scanner.next();
+        System.out.println("Please, enter teacher_id");
+        String student_login= scanner.next();
+        System.out.println("Please, enter student_id which you wand delete");
+        String message = scanner.next();
+        String response = controller2.WriteMessage(direction,teacher_login,student_login,message);
+        System.out.println(response);
+    }
+    public void ShowAllTeacherMessages(){
+        System.out.println("Please, enter teacher_id");
+        String student_login= scanner.next();
+        String response = controller2.ShowAllTeacherMessages(student_login);
+        System.out.println(response);
+    }
+    public void ShowAllStudentMessages(){
+        System.out.println("Please, enter teacher_id");
+        String teacher_login= scanner.next();
+        String response = controller2.ShowAllStudentMessages(teacher_login);
+        System.out.println(response);
+    }
+    public void ShowMessagesStudentWithTeacher(){
+        System.out.println("Please, enter teacher_id");
+        String teacher_login= scanner.next();
+        System.out.println("Please, enter teacher_id");
+        String student_login= scanner.next();
+        String response = controller2.ShowMessagesStudentWithTeacher(student_login,teacher_login);
+        System.out.println(response);
+    }
+    public void ShowMessagesTeacherWithStudent(){
+        System.out.println("Please, enter teacher_id");
+        String teacher_login= scanner.next();
+        System.out.println("Please, enter teacher_id");
+        String student_login= scanner.next();
+        String response = controller2.ShowMessagesTeacherWithStudent(student_login,teacher_login);
         System.out.println(response);
     }
 }
