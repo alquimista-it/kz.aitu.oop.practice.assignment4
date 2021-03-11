@@ -105,24 +105,24 @@ public class StudentRepo implements IStudentRepo {
         Connection con = null;
         try {
             con = db.getConnection();
-
-
-            String sql =  "SELECT medicament.id,medicament.name,medicament.cost,medicament.description FROM medicament join bind ON bind.med_id=medicament.id WHERE bind.order_id=?;" ;
-            PreparedStatement st = con.prepareStatement(sql);
+            String sql =  "SELECT id,direction,teacher_login,student_login,message FROM message WHERE student_login=? and direction=false;" ;
+            PreparedStatement st = con.prepareStatement(sql); //если фолс то смотрим все сообщения для ученика от учителей
             st.setString(1, student_login);
+
             ResultSet rs = st.executeQuery();
             List<Message> messageArrayList = new ArrayList<>();
             while (rs.next()) {
                 Message message = new Message(rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getInt("cost"),
-                        rs.getString("description")
+                        rs.getBoolean("direction"),
+                        rs.getString("teacher_login"),
+                        rs.getString("student_login"),
+                        rs.getString("message")
                 );
 
-                medicamentList.add(medicament);
+                messageArrayList.add(message);
             }
 
-            return medicamentList;
+            return messageArrayList;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -139,16 +139,114 @@ public class StudentRepo implements IStudentRepo {
 
     @Override
     public List<Message> ShowAllStudentMessages(String teacher_login) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql =  "SELECT id,teacher_login,student_login,message FROM message WHERE student_login=? and direction=true;" ;
+            PreparedStatement st = con.prepareStatement(sql); // если тру то смотрим все сообщения для учителя от учеников
+            st.setString(1, teacher_login);
+
+            ResultSet rs = st.executeQuery();
+            List<Message> messageArrayList = new ArrayList<>();
+            while (rs.next()) {
+                Message message = new Message(rs.getInt("id"),
+                        rs.getBoolean("direction"),
+                        rs.getString("teacher_login"),
+                        rs.getString("student_login"),
+                        rs.getString("message")
+                );
+
+                messageArrayList.add(message);
+            }
+
+            return messageArrayList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return null;
     }
 
     @Override
     public List<Message> ShowMessagesStudentWithTeacher(String student_login, String teacher_login) {
+        Connection con = null; //for student
+        try {
+            con = db.getConnection();
+            String sql =  "SELECT id,teacher_login,student_login,message FROM message WHERE student_login=? and direction=false and teacher_login=?;" ;
+            PreparedStatement st = con.prepareStatement(sql); //если фолс то смотрим все сообщения для ученика от учителей
+            st.setString(1, student_login);
+            st.setString(2, teacher_login);
+
+            ResultSet rs = st.executeQuery();
+            List<Message> messageArrayList = new ArrayList<>();
+            while (rs.next()) {
+                Message message = new Message(rs.getInt("id"),
+                        rs.getBoolean("direction"),
+                        rs.getString("teacher_login"),
+                        rs.getString("student_login"),
+                        rs.getString("message")
+                );
+
+                messageArrayList.add(message);
+            }
+
+            return messageArrayList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return null;
     }
 
     @Override
     public List<Message> ShowMessagesTeacherWithStudent(String student_login, String teacher_login) {
+        Connection con = null; //for teacher
+        try {
+            con = db.getConnection();
+            String sql =  "SELECT id,teacher_login,student_login,message FROM message WHERE  teacher_login=? and direction=true and student_login=?;" ;
+            PreparedStatement st = con.prepareStatement(sql); // если тру то смотрим все сообщения для учителя от учеников
+            st.setString(1, teacher_login);
+            st.setString(2, student_login);
+
+            ResultSet rs = st.executeQuery();
+            List<Message> messageArrayList = new ArrayList<>();
+            while (rs.next()) {
+                Message message = new Message(rs.getInt("id"),
+                        rs.getBoolean("direction"),
+                        rs.getString("teacher_login"),
+                        rs.getString("student_login"),
+                        rs.getString("message")
+                );
+
+                messageArrayList.add(message);
+            }
+
+            return messageArrayList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return null;
     }
 
