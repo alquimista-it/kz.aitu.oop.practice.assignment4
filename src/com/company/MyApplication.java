@@ -60,7 +60,7 @@ public class MyApplication {
             System.out.println("7. DeleteTeacherByLogin ");
             System.out.println("8. UpdateTeacherByLogin");
             System.out.println("9. GetAllTeachers ");
-            System.out.println("10. GetTeacherById");
+            System.out.println("10. GetTeacherByLogin");
             System.out.println("11. CreateStudent ");
             System.out.println("12. DeleteStudentByLogin");
             System.out.println("13. UpdateStudentByLogin ");
@@ -91,41 +91,41 @@ public class MyApplication {
                 }else if (option == 5) {
                     GetAdminByLogin();
                 }else if (option == 6) {
-                    studentInterface();
+                    CreateTeacher();
                 }else if (option == 8) {
-                    studentInterface();
+                    DeleteTeacherByLogin();
                 }else if (option == 9) {
-                    studentInterface();
+                    UpdateTeacherByLogin();
                 }else if (option == 10) {
-                    studentInterface();
+                    GetAllTeachers();
                 }else if (option == 11) {
-                    studentInterface();
+                    GetTeacherByLogin();
                 }else if (option == 12) {
-                    studentInterface();
+                    CreateStudent();
                 }else if (option == 13) {
-                    studentInterface();
+                    UpdateStudentByLogin();
                 }else if (option == 14) {
-                    studentInterface();
+                    GetAllStudents();
                 }else if (option == 15) {
-                    studentInterface();
+                    GetStudentByLogin();
                 }else if (option == 16) {
-                    studentInterface();
+                    CreateSubject();
                 }else if (option == 17) {
-                    studentInterface();
+                    DeleteSubjectById();
                 }else if (option == 18) {
-                    studentInterface();
+                    UpdateSubjectById();
                 }else if (option == 19) {
-                    studentInterface();
+                    GetAllSubjects();
                 }else if (option == 20) {
-                    studentInterface();
+                    GetSubjectsById();
                 }else if (option == 21) {
-                    studentInterface();
+                    AddTeacherToSubject();
                 }else if (option == 22) {
-                    studentInterface();
+                    GetAllTeachersBySubjectId();
                 }else if (option == 23) {
-                    studentInterface();
+                    CreateLoginAndPwd();
                 }else if (option == 24) {
-                    studentInterface();
+                    UpdateLoginAndPwd();
                 }else if (option == 0) {
                     start();
                 }else {
@@ -241,7 +241,7 @@ public class MyApplication {
         System.out.println(response);
     }
     public void GetAdminByLogin(){
-        System.out.println("Please, enter id of admin!");
+        System.out.println("Please, enter ID of admin!");
         String login= scanner.next();
         String response = controller1.GetAdminByLogin(login);
         System.out.println(response);
@@ -327,7 +327,7 @@ public class MyApplication {
         System.out.println(response);
     }
     public void DeleteStudentByLogin() {
-        System.out.println("Please, enter login of teacher!");
+        System.out.println("Please, enter login of student!");
         String login = scanner.next();
         String response = controller1.DeleteStudentByLogin(login);
         System.out.println(response);
@@ -355,7 +355,7 @@ public class MyApplication {
         System.out.println(response);
     }
     public void GetStudentByLogin(){
-        System.out.println("Please, enter ID of teacher!");
+        System.out.println("Please, enter ID of student!");
         String login= scanner.next();
         String response = controller1.GetStudentByLogin(login);
         System.out.println(response);
@@ -371,13 +371,13 @@ public class MyApplication {
         System.out.println(response);
     }
     public void DeleteSubjectById() {
-        System.out.println("Please, enter id of subject!");
+        System.out.println("Please, enter ID of subject!");
         int id = scanner.nextInt();
         String response = controller1.DeleteSubjectById(id);
         System.out.println(response);
     }
     public void UpdateSubjectById() {
-        System.out.println("Please, enter id of a subject!");
+        System.out.println("Please, enter ID of a subject!");
         int id = scanner.nextInt();
         System.out.println("Please, enter name of a subject!");
         String name = scanner.next();
@@ -389,7 +389,7 @@ public class MyApplication {
         System.out.println(response);
     }
     public void GetSubjectsById(){
-        System.out.println("Please, enter ID of teacher!");
+        System.out.println("Please, enter ID of asubject!");
         int id= scanner.nextInt();
         String response = controller1.GetSubjectById(id);
         System.out.println(response);
