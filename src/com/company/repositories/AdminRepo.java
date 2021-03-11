@@ -173,6 +173,36 @@ public class AdminRepo implements IAdminRepo {
 
     @Override
     public boolean CreateTeacher(Teacher teacher) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "INSERT INTO teacher(login,fname,lname,age,gender,phone,email,subjectId) VALUES (?,?,?,?,?,?,?,?)";
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setString(1, teacher.getLogin());
+            st.setString(2, teacher.getFname());
+            st.setString(3, teacher.getLname());
+            st.setInt(4, teacher.getAge());
+            st.setBoolean(5, teacher.isGender());
+            st.setInt(6, teacher.getPhone());
+            st.setString(7, teacher.getEmail());
+            st.setString(8, teacher.getSubjectId());
+
+
+            boolean executed = st.execute();
+            return executed;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+
         return false;
     }
 
@@ -198,6 +228,34 @@ public class AdminRepo implements IAdminRepo {
 
     @Override
     public boolean CreateStudent(Student student) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "INSERT INTO student(login,fname,lname,age,gender,phone,email) VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setString(1, student.getLogin());
+            st.setString(2, student.getFname());
+            st.setString(3, student.getLname());
+            st.setInt(5, student.getAge());
+            st.setBoolean(6, student.isGender());
+            st.setInt(7, student.getPhone());
+            st.setString(8, student.getEmail());
+
+
+            boolean executed = st.execute();
+            return executed;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return false;
     }
 
@@ -223,6 +281,27 @@ public class AdminRepo implements IAdminRepo {
 
     @Override
     public boolean CreateSubject(Subject subject) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "INSERT INTO subject(name) VALUES (?)";
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setString(1, subject.getName());
+
+            boolean executed = st.execute();
+            return executed;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return false;
     }
 
