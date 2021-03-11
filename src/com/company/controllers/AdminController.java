@@ -3,15 +3,16 @@ package com.company.controllers;
 import com.company.entities.*;
 import com.company.repositories.interfaces.IAdminRepo;
 import com.company.repositories.interfaces.ILoginandpwd;
+import com.company.repositories.interfaces.IStudentRepo;
 
 import java.util.List;
 
 public class AdminController {
     private final IAdminRepo repo;
     private final ILoginandpwd repo1;
-    private final ILoginandpwd repo2;
+    private final IStudentRepo repo2;
 
-    public AdminController(IAdminRepo repo, ILoginandpwd repo1, ILoginandpwd repo2) {
+    public AdminController(IAdminRepo repo, ILoginandpwd repo1, IStudentRepo repo2) {
         this.repo = repo;
         this.repo1 = repo1;
         this.repo2 = repo2;
@@ -136,6 +137,21 @@ public class AdminController {
         return (updated ? "Subject updated" : "Fail");
     }
     //end loginAndPwd
+
+    //start join student and exit
+//    boolean JoinToNewTeacher(TeacherAndStudents teacherAndStudents); //создаем учеников для учител
+    public String JoinToNewTeacher(int teacher_id,int student_id){
+        TeacherAndStudents teacherAndStudents  =new TeacherAndStudents(teacher_id,student_id);
+        boolean joined= repo2.JoinToNewTeacher(teacherAndStudents);
+        return (joined ? "Student was join to New Teacher" : "Fail");
+    }
+//    boolean ExitFromTeacher(TeacherAndStudents teacherAndStudents); //выходим из учителя тип из класса
+    public String ExitFromTeacher(int teacher_id,int student_id){
+        TeacherAndStudents teacherAndStudents  =new TeacherAndStudents(teacher_id,student_id);
+        boolean exited= repo2.ExitFromTeacher(teacherAndStudents);
+        return (exited ? "Student was deleted from this Teacher class" : "Fail");
+    }
+    //end join student and exit
 
 
 }
