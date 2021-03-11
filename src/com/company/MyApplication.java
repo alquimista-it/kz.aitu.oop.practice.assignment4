@@ -1,24 +1,136 @@
 package com.company;
 
 import com.company.controllers.*;
+import com.company.entities.Message;
 import com.company.repositories.interfaces.*;
 import java.util.Scanner;
 
 
 public class MyApplication {
-    private final NecklaceController controller1;
-    private final StoneController controller2;
-    private final LinkerController controller3;
+    private final AdminController controller1;
+    private final MessageController controller2;
     private final Scanner scanner;
 
-    public MyApplication(INecklaceRepo orderRepo, IStoneRepo medicamentRepo, ILinkerRepo bindRepo) {
-        controller1 = new NecklaceController(orderRepo,medicamentRepo);
-        controller2 = new StoneController(medicamentRepo);
-        controller3 = new LinkerController(bindRepo);
+    public MyApplication(IAdminRepo adminRepo, IStudentRepo studentRepo, ILoginandpwd loginandpwd) {
+        controller1 = new AdminController(adminRepo, loginandpwd,studentRepo);
+        controller2 = new MessageController(studentRepo);
         scanner = new Scanner(System.in);
     }
+    public void start(){
+        while (true) {
+            System.out.println(); //console interface
+            System.out.println("Welcome to Course management system");
+            System.out.println("Select option:");
+            System.out.println("1. Administrator module ");
+            System.out.println("2. •\tStudents module");
+            System.out.println("3. •\tInstructor module");
+            System.out.println();
+            try { //function
+                System.out.print("Enter option (1-3): ");
+                int option = scanner.nextInt();
+                if (option == 1) {
+                    adminInterface();
+                } else if (option == 2) {
+                    teacherInterface();
+                } else if (option == 3) {
+                    studentInterface();
+                }else {
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                scanner.next(); // to ignore incorrect input
+            }
+            System.out.println("**********************************");
+        }
+    }
 
-    public void start() {
+    public void adminInterface(){
+        while (true) {
+            System.out.println(); //console interface
+            System.out.println("Welcome to Course management system");
+            System.out.println("Select option:");
+            System.out.println("1. Administrator module ");
+            System.out.println("2. •\tStudents module");
+            System.out.println("3. •\tInstructor module");
+            System.out.println();
+            try { //function
+                System.out.print("Enter option (1-3): ");
+                int option = scanner.nextInt();
+                if (option == 1) {
+                    adminInterface();
+                } else if (option == 2) {
+                    teacherInterface();
+                } else if (option == 3) {
+                    studentInterface();
+                }else {
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                scanner.next(); // to ignore incorrect input
+            }
+            System.out.println("**********************************");
+        }
+    }
+    public void teacherInterface(){
+        while (true) {
+            System.out.println(); //console interface
+            System.out.println("Welcome to Course management system");
+            System.out.println("Select option:");
+            System.out.println("1. Administrator module ");
+            System.out.println("2. •\tStudents module");
+            System.out.println("3. •\tInstructor module");
+            System.out.println();
+            try { //function
+                System.out.print("Enter option (1-3): ");
+                int option = scanner.nextInt();
+                if (option == 1) {
+                    adminInterface();
+                } else if (option == 2) {
+                    teacherInterface();
+                } else if (option == 3) {
+                    studentInterface();
+                }else {
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                scanner.next(); // to ignore incorrect input
+            }
+            System.out.println("**********************************");
+        }
+    }
+    public void studentInterface(){
+        while (true) {
+            System.out.println(); //console interface
+            System.out.println("Welcome to Course management system");
+            System.out.println("Select option:");
+            System.out.println("1. Administrator module ");
+            System.out.println("2. •\tStudents module");
+            System.out.println("3. •\tInstructor module");
+            System.out.println();
+            try { //function
+                System.out.print("Enter option (1-3): ");
+                int option = scanner.nextInt();
+                if (option == 1) {
+                    adminInterface();
+                } else if (option == 2) {
+                    teacherInterface();
+                } else if (option == 3) {
+                    studentInterface();
+                }else {
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                scanner.next(); // to ignore incorrect input
+            }
+            System.out.println("**********************************");
+        }
+    }
+
+    public void start1() {
         while (true) {
             System.out.println(); //console interface
             System.out.println("Welcome to Necklace Stones management System");
@@ -68,6 +180,8 @@ public class MyApplication {
 
         }
     }
+
+    //---------------------------------------------------------------------
     //describing functions
     private void UpdateNeclaceById() {
         System.out.println("Please, enter Necklace id which you want update!");
@@ -105,14 +219,7 @@ public class MyApplication {
         System.out.println(response);
     }
 
-    public void createNeclace() {
-        System.out.println("Please, enter perfect necklace name!");
-        String name = scanner.next();
-        int cost=0;
-        int weight=0;
-        String response = controller1.createNeclace(name,weight,cost);
-        System.out.println(response);
-    }
+
 
 
     public void getAllStones() {
@@ -136,6 +243,16 @@ public class MyApplication {
         int cost = scanner.nextInt();
 
         String response = controller2.createStone(name,weight,cost);
+        System.out.println(response);
+    }
+
+   // ---------------------------------------
+    public void CreateAdmin() {
+        System.out.println("Please, enter perfect necklace name!");
+        String name = scanner.next();
+        int cost=0;
+        int weight=0;
+        String response = controller1.createNeclace(name,weight,cost);
         System.out.println(response);
     }
 

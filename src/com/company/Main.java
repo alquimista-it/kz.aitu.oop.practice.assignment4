@@ -10,9 +10,9 @@ public class Main {
     public static void main(String[] args) {
         IDB db = new PostgresDB(); //connection with db
         //create connection
-        INecklaceRepo repo = new NecklaceRepo(db);
-        IStoneRepo repo1 = new StoneRepo(db);
-        ILinkerRepo repo2=new LinkerRepo(db);
+        IAdminRepo repo = new AdminRepo(db);
+        IStudentRepo repo1=new StudentRepo(db);
+        ILoginandpwd repo2=new LoginandpwdRepo(db);
         //create application
         MyApplication app = new MyApplication(repo,repo1,repo2);
         app.start();

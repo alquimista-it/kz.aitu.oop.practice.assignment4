@@ -17,6 +17,10 @@ public class AdminController {
         this.repo1 = repo1;
         this.repo2 = repo2;
     }
+
+
+
+
     // start admin
     public String CreateAdmin(String login, String fname, String lname, int phone, String email){
         Admin admin=new Admin(login,fname,lname,phone,email);
