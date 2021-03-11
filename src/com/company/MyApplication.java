@@ -22,8 +22,8 @@ public class MyApplication {
             System.out.println("Welcome to Course management system");
             System.out.println("Select option:");
             System.out.println("1. Administrator module ");
-            System.out.println("2. Students module");
-            System.out.println("3. Instructor module");
+            System.out.println("2. Teacher module");
+            System.out.println("3. Student module");
             System.out.println("0. Exit");
             System.out.println();
             try { //function
@@ -141,21 +141,24 @@ public class MyApplication {
     public void teacherInterface(){
         while (true) {
             System.out.println(); //console interface
-            System.out.println("Welcome to Course management system");
+            System.out.println("Welcome to Teacher module");
             System.out.println("Select option:");
-            System.out.println("1. Administrator module ");
-            System.out.println("2. •\tStudents module");
-            System.out.println("3. •\tInstructor module");
+            System.out.println("1. WriteMessage ");
+            System.out.println("2. ShowAllStudentMessages");
+            System.out.println("3. ShowMessagesTeacherWithStudent");
+            System.out.println("0. Exit");
             System.out.println();
             try { //function
                 System.out.print("Enter option (1-3): ");
                 int option = scanner.nextInt();
                 if (option == 1) {
-                    adminInterface();
+                    WriteMessage();
                 } else if (option == 2) {
-                    teacherInterface();
+                    ShowAllStudentMessages();
                 } else if (option == 3) {
-                    studentInterface();
+                    ShowMessagesTeacherWithStudent();
+                }else if (option == 0) {
+                    start();
                 }else {
                     break;
                 }
@@ -169,21 +172,24 @@ public class MyApplication {
     public void studentInterface(){
         while (true) {
             System.out.println(); //console interface
-            System.out.println("Welcome to Course management system");
+            System.out.println("Welcome to Student module");
             System.out.println("Select option:");
-            System.out.println("1. Administrator module ");
-            System.out.println("2. Students module");
-            System.out.println("3. Instructor module");
+            System.out.println("1. WriteMessage ");
+            System.out.println("2. ShowAllStudentMessages");
+            System.out.println("3. ShowMessagesTeacherWithStudent");
+            System.out.println("0. Exit");
             System.out.println();
             try { //function
                 System.out.print("Enter option (1-3): ");
                 int option = scanner.nextInt();
                 if (option == 1) {
-                    adminInterface();
+                    WriteMessage();
                 } else if (option == 2) {
-                    teacherInterface();
+                    ShowAllStudentMessages();
                 } else if (option == 3) {
-                    studentInterface();
+                    ShowMessagesTeacherWithStudent();
+                }else if (option == 0) {
+                    start();
                 }else {
                     break;
                 }
@@ -194,12 +200,6 @@ public class MyApplication {
             System.out.println("**********************************");
         }
     }
-
-
-
-
-
-
    // ---------------------------------------
     //s admin
     public void CreateAdmin() {
