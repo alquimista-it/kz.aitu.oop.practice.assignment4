@@ -194,12 +194,12 @@ public class MyApplication {
                 if (option == 1) {
                     WriteMessage();
                 } else if (option == 2) {
-                    ShowAllStudentMessages();
+                    ShowAllTeacherMessages();
                 } else if (option == 3) {
-                    ShowMessagesTeacherWithStudent();
+                    ShowMessagesStudentWithTeacher();
                 }else if (option == 0) {
                     start();
-                }else {
+                }else {//ShowMessagesStudentWithTeacher
                     break;
                 }
             } catch (Exception e) {
