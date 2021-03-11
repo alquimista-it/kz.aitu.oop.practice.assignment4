@@ -14,4 +14,5 @@ public interface IStudentRepo {
     List<Message> ShowAllStudentMessages(String teacher_login);//for teacher
     List<Message> ShowMessagesStudentWithTeacher(String student_login,String teacher_login); //for student
     List<Message> ShowMessagesTeacherWithStudent(String student_login,String teacher_login); //for teacher
+
 }

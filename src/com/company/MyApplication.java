@@ -73,29 +73,61 @@ public class MyApplication {
             System.out.println("20. GetSubjectById");
             System.out.println("21. AddTeacherToSubject");
             System.out.println("22. GetAllTeachersBySubjectId");
-            System.out.println("23. UpdateStudentByLogin ");
-            System.out.println("24. GetAllStudents");
-            System.out.println("26. CreateSubject ");
-            System.out.println("27. DeleteSubjectById");
-            System.out.println("28. UpdateSubjectById");
-            System.out.println("29. GetAllSubjects");
-            System.out.println("30. GetSubjectById");
-            System.out.println("31. AddTeacherToSubject");
-            System.out.println("32. GetAllTeachersBySubjectId");
-            System.out.println("33. UpdateStudentByLogin ");
-            System.out.println("34. GetAllStudents");
-
+            System.out.println("23. CreateLoginAndPwd ");
+            System.out.println("24. UpdateLoginAndPwd");
             System.out.println("0. •Exit");
             System.out.println();
             try { //function
                 System.out.print("Enter option (1-3): ");
                 int option = scanner.nextInt();
                 if (option == 1) {
-                    adminInterface();
+                   CreateAdmin();
                 } else if (option == 2) {
-                    teacherInterface();
+                    DeleteAdminByLogin();
                 } else if (option == 3) {
+                    UpdateAdminByLogin();
+                }else if (option == 4) {
+                   GetAllAdmins();
+                }else if (option == 5) {
+                    GetAdminByLogin();
+                }else if (option == 6) {
                     studentInterface();
+                }else if (option == 8) {
+                    studentInterface();
+                }else if (option == 9) {
+                    studentInterface();
+                }else if (option == 10) {
+                    studentInterface();
+                }else if (option == 11) {
+                    studentInterface();
+                }else if (option == 12) {
+                    studentInterface();
+                }else if (option == 13) {
+                    studentInterface();
+                }else if (option == 14) {
+                    studentInterface();
+                }else if (option == 15) {
+                    studentInterface();
+                }else if (option == 16) {
+                    studentInterface();
+                }else if (option == 17) {
+                    studentInterface();
+                }else if (option == 18) {
+                    studentInterface();
+                }else if (option == 19) {
+                    studentInterface();
+                }else if (option == 20) {
+                    studentInterface();
+                }else if (option == 21) {
+                    studentInterface();
+                }else if (option == 22) {
+                    studentInterface();
+                }else if (option == 23) {
+                    studentInterface();
+                }else if (option == 24) {
+                    studentInterface();
+                }else if (option == 0) {
+                    start();
                 }else {
                     break;
                 }
@@ -140,8 +172,8 @@ public class MyApplication {
             System.out.println("Welcome to Course management system");
             System.out.println("Select option:");
             System.out.println("1. Administrator module ");
-            System.out.println("2. •\tStudents module");
-            System.out.println("3. •\tInstructor module");
+            System.out.println("2. Students module");
+            System.out.println("3. Instructor module");
             System.out.println();
             try { //function
                 System.out.print("Enter option (1-3): ");

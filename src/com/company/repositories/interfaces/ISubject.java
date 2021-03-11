@@ -5,3 +5,4 @@ import com.company.entities.TeacherAndStudents;
 public interface ISubject {
 
 }
+
