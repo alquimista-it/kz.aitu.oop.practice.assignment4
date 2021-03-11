@@ -1,9 +1,6 @@
 package com.company.controllers;
 
-import com.company.entities.Admin;
-import com.company.entities.Subject;
-import com.company.entities.Teacher;
-import com.company.entities.Student;
+import com.company.entities.*;
 import com.company.repositories.interfaces.IAdminRepo;
 import com.company.repositories.interfaces.ILoginandpwd;
 
@@ -74,7 +71,7 @@ public class AdminController {
         return (created ? "Student created" : "Fail");
     }
     public String DeleteStudentByLogin(String login){
-        boolean deleted=repo.DeleteTeacherByLogin(login);
+        boolean deleted=repo.DeleteStudentByLogin(login);
         return (deleted ? "Student deleted" : "Fail");
     }
     public String UpdateStudentByLogin(String login,String fname,String lname, int age, boolean gender, int phone,String email){
@@ -114,4 +111,31 @@ public class AdminController {
         return (subject == null ? "Not founded" : subject.toString());
     }
     //end subject
+
+    public String AddTeacherToSubject(int teacherId,int subjectId){
+        SubjectAndTeacher subjectAndTeacher=new SubjectAndTeacher(teacherId,subjectId);
+        boolean added=repo.AddTeacherToSubject(subjectAndTeacher);
+        return (added ? "Teacher added to subject group." : "Fail");
+    }
+    public String GetAllTeachersBySubjectId(int subject_id){
+        List<Teacher> teacherList=repo.GetAllTeachersBySubjectId(subject_id);
+        return (teacherList == null ? "Not founded" : teacherList.toString());
+    }
+
+    //start loginAndPwd
+    public String CreateLoginAndPwd(String login,String pwd,int userType){
+        Loginandpwd loginandpwd=new Loginandpwd(login,pwd,userType);
+        boolean created= repo1.CreateLoginAndPwd(loginandpwd);
+        return (created ? "New User created" : "Fail");
+    }
+    public String CheckPwd(){
+        return "";
+    }
+    public String UpdateLoginAndPwd(int id,String login,String pwd,int userType){
+        boolean updated=repo1.UpdateLoginAndPwd(id,login,pwd,userType);
+        return (updated ? "Subject updated" : "Fail");
+    }
+    //end loginAndPwd
+
+
 }

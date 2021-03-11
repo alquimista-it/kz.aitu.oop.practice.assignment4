@@ -20,11 +20,12 @@ public class LoginandpwdRepo implements ILoginandpwd {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "INSERT INTO loginandpwd(login,pwd) VALUES (?,?)";
+            String sql = "INSERT INTO loginandpwd(login,pwd,usertype) VALUES (?,?,?)";
             PreparedStatement st = con.prepareStatement(sql);
 
             st.setString(1, loginandpwd.getLogin());
             st.setString(2,loginandpwd.getPwd());
+            st.setInt(3,loginandpwd.getUserType());//1-admin 2-teacher 3-student
 
             boolean executed = st.execute();
             return executed;
@@ -48,15 +49,16 @@ public class LoginandpwdRepo implements ILoginandpwd {
     }
 
     @Override
-    public boolean UpdateLoginAndPwd(int id,String pwd,String login) {
+    public boolean UpdateLoginAndPwd(int id,String pwd,String login,int usertype) {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "UPDATE loginandpwd SET login=?,pwd=? WHERE id=?";
+            String sql = "UPDATE loginandpwd SET login=?,pwd=?,usertype=? WHERE id=?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, login);
             st.setString(2, pwd);
-            st.setInt(3, id);
+            st.setInt(3, usertype);
+            st.setInt(4, id);
 
 
             boolean executed = st.execute();

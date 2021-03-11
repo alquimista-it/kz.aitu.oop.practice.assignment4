@@ -4,18 +4,29 @@ public class Loginandpwd {
     private int id;
     private String login;
     private String pwd;
+    private int userType;
 
     public Loginandpwd(){}
 
-    public Loginandpwd(String login, String pwd){
+    public Loginandpwd(String login, String pwd,int userType){
         setLogin(login);
         setPwd(pwd);
+        setUserType(userType);
     }
 
-    public Loginandpwd(int id, String login, String pwd) {
+    public Loginandpwd(int id, String login, String pwd,int userType) {
         setId(id);
         setLogin(login);
         setPwd(pwd);
+        setUserType(userType);
+    }
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
     }
 
     public int getId() {
