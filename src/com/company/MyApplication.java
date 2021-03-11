@@ -258,35 +258,35 @@ public class MyApplication {
    // ---------------------------------------
     //s admin
     public void CreateAdmin() {
-        System.out.println("Please, enter stone name!");
+        System.out.println("Please, enter login!");
         String login = scanner.next();
-        System.out.println("Please, enter stone name!");
+        System.out.println("Please, enter first name!");
         String fname = scanner.next();
-        System.out.println("Please, enter stone weight!");
+        System.out.println("Please, enter last name!");
         String lname = scanner.next();
-        System.out.println("Please, enter stone cost!");
+        System.out.println("Please, enter phone number!");
         int phone = scanner.nextInt();
-        System.out.println("Please, enter stone name!");
+        System.out.println("Please, enter email address!");
         String email = scanner.next();
         String response = controller1.CreateAdmin(login,fname,lname,phone,email);
         System.out.println(response);
     }
     public void DeleteAdminByLogin() {
-        System.out.println("Please, enter stone name!");
+        System.out.println("Please, enter login of admin!");
         String login = scanner.next();
         String response = controller1.DeleteAdminByLogin(login);
         System.out.println(response);
     }
     public void UpdateAdminByLogin() {
-        System.out.println("Please, enter stone name!");
+        System.out.println("Please, enter login!");
         String login = scanner.next();
-        System.out.println("Please, enter stone name!");
+        System.out.println("Please, enter first name!");
         String fname = scanner.next();
-        System.out.println("Please, enter stone weight!");
+        System.out.println("Please, enter last name!");
         String lname = scanner.next();
-        System.out.println("Please, enter stone cost!");
+        System.out.println("Please, enter phone number!");
         int phone = scanner.nextInt();
-        System.out.println("Please, enter stone name!");
+        System.out.println("Please, enter email address!");
         String email = scanner.next();
         String response = controller1.UpdateAdminByLogin(login,fname,lname,phone,email);
         System.out.println(response);
@@ -296,10 +296,59 @@ public class MyApplication {
         System.out.println(response);
     }
     public void GetAdminByLogin(){
-        System.out.println("Please, enter id of needing necklace's stones!");
+        System.out.println("Please, enter id of admin!");
         String login= scanner.next();
         String response = controller1.GetAdminByLogin(login);
         System.out.println(response);
     }
     //f admin
+
+    //s teacher
+    public void CreateTeacher() {
+        System.out.println("Please, enter login!");
+        String login = scanner.next();
+        System.out.println("Please, enter first name!");
+        String fname = scanner.next();
+        System.out.println("Please, enter last name!");
+        String lname = scanner.next();
+        System.out.println("Please, enter your age!");
+        int age = scanner.nextInt();
+        System.out.println("Please, enter phone number!");
+        int phone = scanner.nextInt();
+        System.out.println("Please, enter email address!");
+        String email = scanner.next();
+        String response = controller1.CreateTeacher(login,fname,lname,age,gender,phone,email,subjectId);
+        System.out.println(response);
+    }
+    public void DeleteAdminByLogin() {
+        System.out.println("Please, enter login of admin!");
+        String login = scanner.next();
+        String response = controller1.DeleteAdminByLogin(login);
+        System.out.println(response);
+    }
+    public void UpdateAdminByLogin() {
+        System.out.println("Please, enter login!");
+        String login = scanner.next();
+        System.out.println("Please, enter first name!");
+        String fname = scanner.next();
+        System.out.println("Please, enter last name!");
+        String lname = scanner.next();
+        System.out.println("Please, enter phone number!");
+        int phone = scanner.nextInt();
+        System.out.println("Please, enter email address!");
+        String email = scanner.next();
+        String response = controller1.UpdateAdminByLogin(login,fname,lname,phone,email);
+        System.out.println(response);
+    }
+    public void GetAllAdmins(){
+        String response = controller1.GetAllAdmins();
+        System.out.println(response);
+    }
+    public void GetAdminByLogin(){
+        System.out.println("Please, enter id of admin!");
+        String login= scanner.next();
+        String response = controller1.GetAdminByLogin(login);
+        System.out.println(response);
+    }
+    //f teacher
 }
