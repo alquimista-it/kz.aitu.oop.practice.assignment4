@@ -14,7 +14,7 @@ public interface IAdminRepo {
 
     boolean CreateTeacher(Teacher teacher);
     boolean DeleteTeacherByLogin(String login);
-    boolean UpdateTeacherByLogin(String login, String fname, String lname, int age, boolean gender, int phone, String email, String subjectId);
+    boolean UpdateTeacherByLogin(String login, String fname, String lname, int age, boolean gender, int phone, String email, int subjectId);
     List<Teacher> GetAllTeachers();
     Teacher GetTeacherById(String login);
 

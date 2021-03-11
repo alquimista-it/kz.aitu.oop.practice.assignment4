@@ -314,43 +314,142 @@ public class MyApplication {
         System.out.println("Please, enter your age!");
         int age = scanner.nextInt();
         System.out.println("Please, enter your gender!");
-
+        boolean gender = scanner.nextBoolean();
         System.out.println("Please, enter phone number!");
         int phone = scanner.nextInt();
         System.out.println("Please, enter email address!");
         String email = scanner.next();
+        System.out.println("Please, enter ID of subject!");
+        int subjectId = scanner.nextInt();
         String response = controller1.CreateTeacher(login,fname,lname,age,gender,phone,email,subjectId);
         System.out.println(response);
     }
-    public void DeleteAdminByLogin() {
-        System.out.println("Please, enter login of admin!");
+    public void DeleteTeacherByLogin() {
+        System.out.println("Please, enter login of teacher!");
         String login = scanner.next();
-        String response = controller1.DeleteAdminByLogin(login);
+        String response = controller1.DeleteStudentByLogin(login);
         System.out.println(response);
     }
-    public void UpdateAdminByLogin() {
+    public void UpdateTeacherByLogin() {
         System.out.println("Please, enter login!");
         String login = scanner.next();
         System.out.println("Please, enter first name!");
         String fname = scanner.next();
         System.out.println("Please, enter last name!");
         String lname = scanner.next();
+        System.out.println("Please, enter your age!");
+        int age = scanner.nextInt();
+        System.out.println("Please, enter your gender!");
+        boolean gender = scanner.nextBoolean();
         System.out.println("Please, enter phone number!");
         int phone = scanner.nextInt();
         System.out.println("Please, enter email address!");
         String email = scanner.next();
-        String response = controller1.UpdateAdminByLogin(login,fname,lname,phone,email);
+        System.out.println("Please, enter ID of subject!");
+        int subjectId = scanner.nextInt();
+        String response = controller1.UpdateTeacherByLogin(login,fname,lname,age,gender,phone,email,subjectId);
         System.out.println(response);
     }
-    public void GetAllAdmins(){
-        String response = controller1.GetAllAdmins();
+    public void GetAllTeachers(){
+        String response = controller1.GetAllTeachers();
         System.out.println(response);
     }
-    public void GetAdminByLogin(){
-        System.out.println("Please, enter id of admin!");
+    public void GetTeacherByLogin(){
+        System.out.println("Please, enter ID of teacher!");
         String login= scanner.next();
-        String response = controller1.GetAdminByLogin(login);
+        String response = controller1.GetTeacherByLogin(login);
         System.out.println(response);
     }
     //f teacher
+
+    //s student
+    public void CreateStudent() {
+        System.out.println("Please, enter login!");
+        String login = scanner.next();
+        System.out.println("Please, enter first name!");
+        String fname = scanner.next();
+        System.out.println("Please, enter last name!");
+        String lname = scanner.next();
+        System.out.println("Please, enter your age!");
+        int age = scanner.nextInt();
+        System.out.println("Please, enter your gender!");
+        boolean gender = scanner.nextBoolean();
+        System.out.println("Please, enter phone number!");
+        int phone = scanner.nextInt();
+        System.out.println("Please, enter email address!");
+        String email = scanner.next();
+        String response = controller1.CreateStudent(login,fname,lname,age,gender,phone,email);
+        System.out.println(response);
+    }
+    public void DeleteStudentByLogin() {
+        System.out.println("Please, enter login of teacher!");
+        String login = scanner.next();
+        String response = controller1.DeleteStudentByLogin(login);
+        System.out.println(response);
+    }
+    public void UpdateStudentByLogin() {
+        System.out.println("Please, enter login!");
+        String login = scanner.next();
+        System.out.println("Please, enter first name!");
+        String fname = scanner.next();
+        System.out.println("Please, enter last name!");
+        String lname = scanner.next();
+        System.out.println("Please, enter your age!");
+        int age = scanner.nextInt();
+        System.out.println("Please, enter your gender!");
+        boolean gender = scanner.nextBoolean();
+        System.out.println("Please, enter phone number!");
+        int phone = scanner.nextInt();
+        System.out.println("Please, enter email address!");
+        String email = scanner.next();
+        String response = controller1.UpdateStudentByLogin(login,fname,lname,age,gender,phone,email);
+        System.out.println(response);
+    }
+    public void GetAllStudents(){
+        String response = controller1.GetAllStudents();
+        System.out.println(response);
+    }
+    public void GetStudentByLogin(){
+        System.out.println("Please, enter ID of teacher!");
+        String login= scanner.next();
+        String response = controller1.GetStudentByLogin(login);
+        System.out.println(response);
+    }
+    //f student
+
+    //s subject
+    public void CreateSubject() {
+        System.out.println("Please, enter name of a subject!");
+        String name = scanner.next();
+
+        String response = controller1.CreateSubject(name);
+        System.out.println(response);
+    }
+    public void DeleteSubjectById() {
+        System.out.println("Please, enter id of subject!");
+        int id = scanner.nextInt();
+        String response = controller1.DeleteSubjectById(id);
+        System.out.println(response);
+    }
+    public void UpdateSubjectById() {
+        System.out.println("Please, enter id of a subject!");
+        int id = scanner.nextInt();
+        System.out.println("Please, enter name of a subject!");
+        String name = scanner.next();
+        String response = controller1.UpdateSubjectById(id, name);
+        System.out.println(response);
+    }
+    public void GetAllSubjects(){
+        String response = controller1.GetAllSubjects();
+        System.out.println(response);
+    }
+    public void GetSubjectsById(){
+        System.out.println("Please, enter ID of teacher!");
+        String login= scanner.next();
+        String response = controller1.GetStudentByLogin(login);
+        System.out.println(response);
+    }
+
+    //f subject
+
 }

@@ -186,7 +186,7 @@ public class AdminRepo implements IAdminRepo {
             st.setBoolean(5, teacher.isGender());
             st.setInt(6, teacher.getPhone());
             st.setString(7, teacher.getEmail());
-            st.setString(8, teacher.getSubjectId());
+            st.setInt(8, teacher.getSubjectId());
 
 
             boolean executed = st.execute();
@@ -232,7 +232,7 @@ public class AdminRepo implements IAdminRepo {
     }
 
     @Override
-    public boolean UpdateTeacherByLogin(String login, String fname, String lname, int age, boolean gender, int phone, String email, String subjectId) {
+    public boolean UpdateTeacherByLogin(String login, String fname, String lname, int age, boolean gender, int phone, String email, int subjectId) {
         Connection con = null;
         try {
             con = db.getConnection();
@@ -244,7 +244,7 @@ public class AdminRepo implements IAdminRepo {
             st.setBoolean(4, gender);
             st.setInt(5, phone);
             st.setString(6, email);
-            st.setString(7, subjectId);
+            st.setInt(7, subjectId);
 
             boolean executed = st.execute();
             return executed;
@@ -281,7 +281,7 @@ public class AdminRepo implements IAdminRepo {
                         rs.getBoolean("gender"),
                         rs.getInt("phone"),
                         rs.getString("email"),
-                        rs.getString("subjectId")
+                        rs.getInt("subjectId")
                 );
 
                 teacherArrayList.add(teacher);
@@ -322,7 +322,7 @@ public class AdminRepo implements IAdminRepo {
                         rs.getBoolean("gender"),
                         rs.getInt("phone"),
                         rs.getString("email"),
-                        rs.getString("subjectId")
+                        rs.getInt("subjectId")
                 );
 
                 return teacher;
@@ -699,7 +699,7 @@ public class AdminRepo implements IAdminRepo {
                         rs.getBoolean("gender"), //обратный трансфер будет в апликэйшоне или в контроллере
                         rs.getInt("phone"),
                         rs.getString("email"),
-                        rs.getString("subjectid")
+                        rs.getInt("subjectid")
                 );
 
                 teacherArrayList.add(teacher);

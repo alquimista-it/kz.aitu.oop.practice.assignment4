@@ -46,7 +46,7 @@ public class AdminController {
     //end admin
 
     //start teacher
-    public String CreateTeacher(String login, String fname, String lname, int age, boolean gender, int phone, String email, String subjectId){
+    public String CreateTeacher(String login, String fname, String lname, int age, boolean gender, int phone, String email, int subjectId){
         Teacher teacher=new Teacher(login,fname,lname, age, gender, phone,email, subjectId);
         boolean created=repo.CreateTeacher(teacher);
         return (created ? "Teacher created" : "Fail");
@@ -55,7 +55,7 @@ public class AdminController {
         boolean deleted=repo.DeleteTeacherByLogin(login);
         return (deleted ? "Teacher deleted" : "Fail");
     }
-    public String UpdateTeacherByLogin(String login,String fname,String lname, int age, boolean gender, int phone,String email, String subjectId){
+    public String UpdateTeacherByLogin(String login,String fname,String lname, int age, boolean gender, int phone,String email, int subjectId){
         boolean updated=repo.UpdateTeacherByLogin(login,fname,lname, age, gender, phone, email, subjectId);
         return (updated ? "Teacher updated" : "Fail");
     }

@@ -9,11 +9,11 @@ public class Teacher {
     private boolean gender;
     private int phone;
     private String email;
-    private String subjectId;
+    private int subjectId;
 
     public Teacher(){}
 
-    public Teacher(int id, String login, String fname, String lname, int age, boolean gender, int phone, String email, String subjectId) {
+    public Teacher(int id, String login, String fname, String lname, int age, boolean gender, int phone, String email, int subjectId) {
         setId(id);
         setLogin(login);
         setFname(fname);
@@ -25,7 +25,7 @@ public class Teacher {
         setSubjectId(subjectId);
     }
 
-    public Teacher(String login, String fname, String lname, int age, boolean gender, int phone, String email, String subjectId) {
+    public Teacher(String login, String fname, String lname, int age, boolean gender, int phone, String email, int subjectId) {
         setLogin(login);
         setFname(fname);
         setLname(lname);
@@ -100,11 +100,11 @@ public class Teacher {
         this.email = email;
     }
 
-    public String getSubjectId() {
+    public int getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(String subjectId) {
+    public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
     }
 
