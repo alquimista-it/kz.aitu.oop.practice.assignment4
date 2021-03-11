@@ -208,21 +208,136 @@ public class AdminRepo implements IAdminRepo {
 
     @Override
     public boolean DeleteTeacherByLogin(String login) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "DELETE FROM teacher WHERE login = ?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, login);
+
+            boolean executed = st.execute();
+            return executed;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return false;
     }
 
     @Override
     public boolean UpdateTeacherByLogin(String login, String fname, String lname, int age, boolean gender, int phone, String email, String subjectId) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "UPDATE teacher SET fname=?,lname=?,age=?,gender=?,phone=?,email=?,subjectId=? WHERE login=?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, fname);
+            st.setString(2, lname);
+            st.setInt(3, age);
+            st.setBoolean(4, gender);
+            st.setInt(5, phone);
+            st.setString(6, email);
+            st.setString(7, subjectId);
+
+            boolean executed = st.execute();
+            return executed;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return false;
     }
 
     @Override
     public List<Teacher> GetAllTeachers() {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "SELECT id,login,fname,lname,age,gender,phone,email,subjectId FROM teacher";
+            Statement st = con.createStatement();
+
+            ResultSet rs = st.executeQuery(sql);
+            List<Teacher> teacherArrayList = new ArrayList<>();
+            while (rs.next()) {
+                Teacher teacher = new Teacher(rs.getInt("id"),
+                        rs.getString("login"),
+                        rs.getString("fname"),
+                        rs.getString("lname"),
+                        rs.getInt("age"),
+                        rs.getBoolean("gender"),
+                        rs.getInt("phone"),
+                        rs.getString("email"),
+                        rs.getString("subjectId")
+                );
+
+                teacherArrayList.add(teacher);
+            }
+
+            return teacherArrayList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return null;
     }
 
     @Override
     public Teacher GetTeacherById(String login) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "SELECT id,login,fname,lname,age,gender,phone,email,subjectId FROM teacher WHERE login=?";
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setString(1, login);
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Teacher teacher = new Teacher(rs.getInt("id"),
+                        rs.getString("login"),
+                        rs.getString("fname"),
+                        rs.getString("lname"),
+                        rs.getInt("age"),
+                        rs.getBoolean("gender"),
+                        rs.getInt("phone"),
+                        rs.getString("email"),
+                        rs.getString("subjectId")
+                );
+
+                return teacher;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return null;
     }
 
@@ -261,21 +376,134 @@ public class AdminRepo implements IAdminRepo {
 
     @Override
     public boolean DeleteStudentByLogin(String login) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "DELETE FROM student WHERE login = ?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, login);
+
+
+            boolean executed = st.execute();
+            return executed;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return false;
     }
 
     @Override
     public boolean UpdateStudentByLogin(String login, String fname, String lname, int age, boolean gender, int phone, String email) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "UPDATE student SET fname=?,lname=?,age=?,gender=?,phone=?,email=? WHERE login=?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, fname);
+            st.setString(2, lname);
+            st.setInt(3, age);
+            st.setBoolean(4, gender);
+            st.setInt(5, phone);
+            st.setString(6, email);
+
+            boolean executed = st.execute();
+            return executed;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return false;
     }
 
     @Override
     public List<Student> GetAllStudents() {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "SELECT id,login,fname,lname,age,gender,phone,email FROM student";
+            Statement st = con.createStatement();
+
+            ResultSet rs = st.executeQuery(sql);
+            List<Student> studentArrayList = new ArrayList<>();
+            while (rs.next()) {
+                Student student = new Student(rs.getInt("id"),
+                        rs.getString("login"),
+                        rs.getString("fname"),
+                        rs.getString("lname"),
+                        rs.getInt("age"),
+                        rs.getBoolean("gender"),
+                        rs.getInt("phone"),
+                        rs.getString("email")
+                );
+
+                studentArrayList.add(student);
+            }
+
+            return studentArrayList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return null;
     }
 
     @Override
     public Student GetStudentById(String login) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "SELECT id,login,fname,lname,age,gender,phone,email FROM student WHERE login=?";
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setString(1, login);
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Student student = new Student(rs.getInt("id"),
+                        rs.getString("login"),
+                        rs.getString("fname"),
+                        rs.getString("lname"),
+                        rs.getInt("age"),
+                        rs.getBoolean("gender"),
+                        rs.getInt("phone"),
+                        rs.getString("email")
+                );
+
+                return student;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return null;
     }
 
@@ -307,21 +535,117 @@ public class AdminRepo implements IAdminRepo {
 
     @Override
     public boolean DeleteSubjectById(int id) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "DELETE FROM subject WHERE id = ?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, id);
+
+
+            boolean executed = st.execute();
+            return executed;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return false;
     }
 
     @Override
     public boolean UpdateSubjectById(int id, String name) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "UPDATE subject SET name=? WHERE id=?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1,name);
+
+            boolean executed = st.execute();
+            return executed;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return false;
     }
 
     @Override
     public List<Subject> GetAllSubjects() {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "SELECT id, name FROM subject";
+            Statement st = con.createStatement();
+
+            ResultSet rs = st.executeQuery(sql);
+            List<Subject> subjectArrayList = new ArrayList<>();
+            while (rs.next()) {
+                Subject subject = new Subject(rs.getInt("id"),
+                        rs.getString("name")
+                );
+
+                subjectArrayList.add(subject);
+            }
+
+            return subjectArrayList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return null;
     }
 
     @Override
     public Subject GetSubjectById(int id) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "SELECT id,name FROM subject WHERE id=?";
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setInt(1, id);
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Subject subject = new Subject(rs.getInt("id"),
+                        rs.getString("name")
+                );
+
+                return subject;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return null;
     }
 
