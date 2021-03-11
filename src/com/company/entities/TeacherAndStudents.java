@@ -3,20 +3,20 @@ package com.company.entities;
 public class TeacherAndStudents {
     private int id;
     private int teacherId;
-    private int subjectId;
+    private int studentId;
 
 
     public TeacherAndStudents(){}
 
-    public TeacherAndStudents(int id, int teacherId, int subjectId) {
+    public TeacherAndStudents(int id, int teacherId, int studentId) {
         setId(id);
         setTeacherId(teacherId);
-        setSubjectId(subjectId);
+        setStudentId(studentId);
     }
 
-    public TeacherAndStudents(int teacherId, int subjectId) {
+    public TeacherAndStudents(int teacherId, int studentId) {
         setTeacherId(teacherId);
-        setSubjectId(subjectId);
+        setStudentId(studentId);
     }
 
     public int getId() {
@@ -35,12 +35,12 @@ public class TeacherAndStudents {
         this.teacherId = teacherId;
     }
 
-    public int getSubjectId() {
-        return subjectId;
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setSubjectId(int subjectId) {
-        this.subjectId = subjectId;
+    public void setStudentId(int subjectId) {
+        this.studentId = subjectId;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class TeacherAndStudents {
         return "TeacherAndStudents{" +
                 "id=" + getId() +
                 ", teacherId=" + getTeacherId() +
-                ", subjectId=" + getSubjectId() +
+                ", subjectId=" + getStudentId() +
                 '}';
     }
 }

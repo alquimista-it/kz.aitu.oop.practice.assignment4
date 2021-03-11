@@ -5,19 +5,20 @@ public class Message {
     private boolean direction;
     private String teacher_login;
     private String student_login;
+    private String text;
 
     public Message() {
 
     }
 
-    public Message(int id, boolean direction, String teacher_login, String student_login) {
+    public Message(int id, boolean direction, String teacher_login, String student_login,String text) {
       setId(id);
       setDirection(direction);
       setTeacher_login(teacher_login);
       setStudent_login(student_login);
     }
 
-    public Message(boolean direction, String teacher_login, String student_login) {
+    public Message(boolean direction, String teacher_login, String student_login,String text) {
         setDirection(direction);
         setTeacher_login(teacher_login);
         setStudent_login(student_login);
@@ -31,7 +32,7 @@ public class Message {
         this.id = id;
     }
 
-    public boolean isDirection() {
+    public boolean getDirection() {
         return direction;
     }
 
@@ -54,11 +55,22 @@ public class Message {
     public void setStudent_login(String student_login) {
         this.student_login = student_login;
     }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     public String toString() {
         return "Loginandpwd{" +
                 "id=" + getId() +
                 ", teacher_id='" + getTeacher_login() + '\'' +
                 ", student_id='" + getStudent_login() + '\'' +
+                ", message='" + getText() + '\'' +
                 '}';
+
     }
 }

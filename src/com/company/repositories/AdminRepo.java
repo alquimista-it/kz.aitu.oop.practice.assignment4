@@ -50,6 +50,7 @@ public class AdminRepo implements IAdminRepo {
             con = db.getConnection();
             String sql = "DELETE FROM admin WHERE login = ?";
             PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, login);
 
 
             boolean executed = st.execute();
@@ -247,11 +248,72 @@ public class AdminRepo implements IAdminRepo {
 
     @Override
     public boolean AddTeacherToSubject(SubjectAndTeacher subjectAndTeacher) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+            String sql = "INSERT INTO subjectandteacher(teacher_id,subject_id) VALUES (?,?)";
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setInt(1, subjectAndTeacher.getTeacherId());
+            st.setInt(2,subjectAndTeacher.getSubjectId());
+
+            boolean executed = st.execute();
+            return executed;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return false;
     }
 
+
     @Override
     public List<Teacher> GetAllTeachersBySubjectId(int id) {
+        Connection con = null;
+        try {
+            con = db.getConnection();
+
+//            boolean male = (gender.toLowerCase().equals("male"));
+
+            String sql =  "SELECT teacher.id,teacher.login,teacher.fname,teacher.lname,teacher.age,teacher.gender,teacher.phone,teacher.email,teacher.subjectid FROM teacher join subjectandteacher ON subjectandteacher.teacher_id=teacher.id WHERE subjectandteacher.subject_id=?;" ;
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            List<Teacher> teacherArrayList = new ArrayList<>();
+            while (rs.next()) {
+                Teacher teacher = new Teacher(rs.getInt("id"),
+                        rs.getString("login"),
+                        rs.getString("fname"),
+                        rs.getString("lname"),
+                        rs.getInt("age"),
+                        rs.getBoolean("gender"), //обратный трансфер будет в апликэйшоне или в контроллере
+                        rs.getInt("phone"),
+                        rs.getString("email"),
+                        rs.getString("subjectid")
+                );
+
+                teacherArrayList.add(teacher);
+            }
+
+            return teacherArrayList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         return null;
     }
 }
