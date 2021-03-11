@@ -16,6 +16,7 @@ public class AdminController {
         this.repo1 = repo1;
         this.repo2 = repo2;
     }
+    // start admin
     public String CreateAdmin(String login, String fname, String lname, int phone, String email){
         Admin admin=new Admin(login,fname,lname,phone,email);
         boolean created=repo.CreateAdmin(admin);
@@ -37,5 +38,9 @@ public class AdminController {
         Admin admin=repo.GetAdminById(login);
         return (admin == null ? "Not founded" : admin.toString());
     }
+    //end admin
 
+    //start teacher
+
+    //end teacher
 }
