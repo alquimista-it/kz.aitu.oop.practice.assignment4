@@ -1,6 +1,7 @@
 package com.company.controllers;
 
 import com.company.entities.Admin;
+import com.company.entities.Teacher;
 import com.company.repositories.interfaces.IAdminRepo;
 import com.company.repositories.interfaces.ILoginandpwd;
 
@@ -41,6 +42,26 @@ public class AdminController {
     //end admin
 
     //start teacher
-
+    public String CreateTeacher(String login, String fname, String lname, int age, boolean gender, int phone, String email, String subjectId){
+        Teacher teacher=new Teacher(login,fname,lname, age, gender, phone,email, subjectId);
+        boolean created=repo.CreateTeacher(teacher);
+        return (created ? "Teacher created" : "Fail");
+    }
+    public String DeleteTeacherByLogin(String login){
+        boolean deleted=repo.DeleteTeacherByLogin(login);
+        return (deleted ? "Teacher deleted" : "Fail");
+    }
+    public String UpdateAdminByLogin(String login,String fname,String lname,int phone,String email){
+        boolean updated=repo.UpdateAdminByLogin(login,fname,lname,phone,email);
+        return (updated ? "Admin updated" : "Fail");
+    }
+    public String GetAllAdmins(){
+        List<Admin> adminList=repo.GetAllAdmins();
+        return  adminList.toString();
+    }
+    public String GetAdminByLogin(String login){
+        Admin admin=repo.GetAdminById(login);
+        return (admin == null ? "Not founded" : admin.toString());
+    }
     //end teacher
 }
