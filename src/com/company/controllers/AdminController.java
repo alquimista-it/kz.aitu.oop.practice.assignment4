@@ -1,7 +1,9 @@
 package com.company.controllers;
 
 import com.company.entities.Admin;
+import com.company.entities.Subject;
 import com.company.entities.Teacher;
+import com.company.entities.Student;
 import com.company.repositories.interfaces.IAdminRepo;
 import com.company.repositories.interfaces.ILoginandpwd;
 
@@ -51,17 +53,65 @@ public class AdminController {
         boolean deleted=repo.DeleteTeacherByLogin(login);
         return (deleted ? "Teacher deleted" : "Fail");
     }
-    public String UpdateAdminByLogin(String login,String fname,String lname,int phone,String email){
-        boolean updated=repo.UpdateAdminByLogin(login,fname,lname,phone,email);
-        return (updated ? "Admin updated" : "Fail");
+    public String UpdateTeacherByLogin(String login,String fname,String lname, int age, boolean gender, int phone,String email, String subjectId){
+        boolean updated=repo.UpdateTeacherByLogin(login,fname,lname, age, gender, phone, email, subjectId);
+        return (updated ? "Teacher updated" : "Fail");
     }
-    public String GetAllAdmins(){
-        List<Admin> adminList=repo.GetAllAdmins();
-        return  adminList.toString();
+    public String GetAllTeachers(){
+        List<Teacher> teacherList=repo.GetAllTeachers();
+        return  teacherList.toString();
     }
-    public String GetAdminByLogin(String login){
-        Admin admin=repo.GetAdminById(login);
-        return (admin == null ? "Not founded" : admin.toString());
+    public String GetTeacherByLogin(String login){
+        Teacher teacher=repo.GetTeacherById(login);
+        return (teacher == null ? "Not founded" : teacher.toString());
     }
     //end teacher
+
+    //start student
+    public String CreateStudent(String login, String fname, String lname, int age, boolean gender, int phone, String email){
+        Student student=new Student(login,fname,lname, age, gender, phone,email);
+        boolean created=repo.CreateStudent(student);
+        return (created ? "Student created" : "Fail");
+    }
+    public String DeleteStudentByLogin(String login){
+        boolean deleted=repo.DeleteTeacherByLogin(login);
+        return (deleted ? "Student deleted" : "Fail");
+    }
+    public String UpdateStudentByLogin(String login,String fname,String lname, int age, boolean gender, int phone,String email){
+        boolean updated=repo.UpdateStudentByLogin(login,fname,lname, age, gender, phone, email);
+        return (updated ? "Student updated" : "Fail");
+    }
+    public String GetAllStudents(){
+        List<Student> studentList=repo.GetAllStudents();
+        return  studentList.toString();
+    }
+    public String GetStudentByLogin(String login){
+        Student student=repo.GetStudentById(login);
+        return (student == null ? "Not founded" : student.toString());
+    }
+    //end student
+
+    //start subject
+    public String CreateSubject(String name){
+        Subject subject=new Subject(name);
+        boolean created=repo.CreateSubject(subject);
+        return (created ? "Subject created" : "Fail");
+    }
+    public String DeleteSubjectById(int id){
+        boolean deleted=repo.DeleteSubjectById(id);
+        return (deleted ? "Subject deleted" : "Fail");
+    }
+    public String UpdateSubjectById(int id, String name){
+        boolean updated=repo.UpdateSubjectById(id, name);
+        return (updated ? "Subject updated" : "Fail");
+    }
+    public String GetAllSubjects(){
+        List<Subject> subjectList=repo.GetAllSubjects();
+        return  subjectList.toString();
+    }
+    public String GetSubjectById(int id){
+        Subject subject=repo.GetSubjectById(id);
+        return (subject == null ? "Not founded" : subject.toString());
+    }
+    //end subject
 }
