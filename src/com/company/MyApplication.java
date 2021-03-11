@@ -313,6 +313,8 @@ public class MyApplication {
         String lname = scanner.next();
         System.out.println("Please, enter your age!");
         int age = scanner.nextInt();
+        System.out.println("Please, enter your gender!");
+
         System.out.println("Please, enter phone number!");
         int phone = scanner.nextInt();
         System.out.println("Please, enter email address!");
