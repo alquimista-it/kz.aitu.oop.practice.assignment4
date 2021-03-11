@@ -51,8 +51,17 @@ public class MyApplication {
             System.out.println("Welcome to Course management system");
             System.out.println("Select option:");
             System.out.println("1. Administrator module ");
-            System.out.println("2. •\tStudents module");
-            System.out.println("3. •\tInstructor module");
+            System.out.println("2. •Students module");
+            System.out.println("3. •Instructor module");
+            System.out.println("1. Administrator module ");
+            System.out.println("2. •Students module");
+            System.out.println("3. •Instructor module");
+            System.out.println("1. Administrator module ");
+            System.out.println("2. •Students module");
+            System.out.println("3. •Instructor module");
+            System.out.println("1. Administrator module ");
+            System.out.println("2. •Students module");
+            System.out.println("0. •Exit");
             System.out.println();
             try { //function
                 System.out.print("Enter option (1-3): ");
@@ -247,13 +256,50 @@ public class MyApplication {
     }
 
    // ---------------------------------------
+    //s admin
     public void CreateAdmin() {
-        System.out.println("Please, enter perfect necklace name!");
-        String name = scanner.next();
-        int cost=0;
-        int weight=0;
-        String response = controller1.createNeclace(name,weight,cost);
+        System.out.println("Please, enter stone name!");
+        String login = scanner.next();
+        System.out.println("Please, enter stone name!");
+        String fname = scanner.next();
+        System.out.println("Please, enter stone weight!");
+        String lname = scanner.next();
+        System.out.println("Please, enter stone cost!");
+        int phone = scanner.nextInt();
+        System.out.println("Please, enter stone name!");
+        String email = scanner.next();
+        String response = controller1.CreateAdmin(login,fname,lname,phone,email);
         System.out.println(response);
     }
-
+    public void DeleteAdminByLogin() {
+        System.out.println("Please, enter stone name!");
+        String login = scanner.next();
+        String response = controller1.DeleteAdminByLogin(login);
+        System.out.println(response);
+    }
+    public void UpdateAdminByLogin() {
+        System.out.println("Please, enter stone name!");
+        String login = scanner.next();
+        System.out.println("Please, enter stone name!");
+        String fname = scanner.next();
+        System.out.println("Please, enter stone weight!");
+        String lname = scanner.next();
+        System.out.println("Please, enter stone cost!");
+        int phone = scanner.nextInt();
+        System.out.println("Please, enter stone name!");
+        String email = scanner.next();
+        String response = controller1.UpdateAdminByLogin(login,fname,lname,phone,email);
+        System.out.println(response);
+    }
+    public void GetAllAdmins(){
+        String response = controller1.GetAllAdmins();
+        System.out.println(response);
+    }
+    public void GetAdminByLogin(){
+        System.out.println("Please, enter id of needing necklace's stones!");
+        String login= scanner.next();
+        String response = controller1.GetAdminByLogin(login);
+        System.out.println(response);
+    }
+    //f admin
 }
