@@ -176,7 +176,7 @@ public class AdminRepo implements IAdminRepo {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "INSERT INTO teacher(login,fname,lname,age,gender,phone,email,subjectId) VALUES (?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO teacher(login,fname,lname,age,gender,phone,email,subject_id) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(sql);
 
             st.setString(1, teacher.getLogin());
@@ -269,7 +269,6 @@ public class AdminRepo implements IAdminRepo {
             con = db.getConnection();
             String sql = "SELECT id,login,fname,lname,age,gender,phone,email,subjectId FROM teacher";
             Statement st = con.createStatement();
-
             ResultSet rs = st.executeQuery(sql);
             List<Teacher> teacherArrayList = new ArrayList<>();
             while (rs.next()) {

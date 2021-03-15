@@ -30,11 +30,11 @@ public class MyApplication {
                 System.out.print("Enter option (1-3): ");
                 int option = scanner.nextInt();
                 if (option == 1) {
-                    adminInterface();
+                    login();
                 } else if (option == 2) {
-                    teacherInterface();
+                    login();
                 } else if (option == 3) {
-                    studentInterface();
+                    login();
                 }else {
                     break;
                 }
@@ -215,7 +215,18 @@ public class MyApplication {
         String login = scanner.next();
         System.out.println("Please, enter pwd!");
         String pwd = scanner.next();
-        String userType = scanner.next();
+        System.out.println("Please, enter usertype!");
+        int userType = scanner.nextInt();
+
+        if(userType==1 ){
+            adminInterface();
+        }
+        else if(userType==2 ){
+            teacherInterface();
+        }
+        else if(userType==3 ){
+            studentInterface();
+        }
     }
 
 
@@ -439,6 +450,7 @@ public class MyApplication {
         String response = controller1.CreateLoginAndPwd(login,pwd,usertype);
         System.out.println(response);
     }
+
     public void UpdateLoginAndPwd(){
         System.out.println("Please, id which you want update");
         int id = scanner.nextInt();

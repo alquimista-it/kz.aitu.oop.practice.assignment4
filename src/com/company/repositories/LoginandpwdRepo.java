@@ -7,9 +7,10 @@ import com.company.entities.Student;
 import com.company.entities.Teacher;
 import com.company.repositories.interfaces.ILoginandpwd;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.awt.*;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginandpwdRepo implements ILoginandpwd {
     private final IDB db;
@@ -44,7 +45,8 @@ public class LoginandpwdRepo implements ILoginandpwd {
     }
 
     @Override
-    public boolean CheckPwd(int id) {
+    public boolean CheckPwd(String login) {
+
         return false;
     }
 

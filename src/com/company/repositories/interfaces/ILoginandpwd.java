@@ -7,7 +7,7 @@ import com.company.entities.Teacher;
 
 public interface ILoginandpwd {
     boolean CreateLoginAndPwd(Loginandpwd loginandpwd);
-    boolean CheckPwd(int id); //check pwd буду ее призывать при проверке паролей
+    boolean CheckPwd(String id); //check pwd буду ее призывать при проверке паролей
     boolean UpdateLoginAndPwd(int id,String pwd,String login,int usertype);
 
 }
